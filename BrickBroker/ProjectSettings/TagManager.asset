@@ -8,6 +8,7 @@ TagManager:
   - UpWall
   - RightWall
   - RestartLine
+  - BlueBrick
   layers:
   - Default
   - TransparentFX

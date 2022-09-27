@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class BallTouch : MonoBehaviour
 {
     public Rigidbody2D rb;
     public float yatayKuvvet, dikeyKuvvet;
+    public TextMeshProUGUI LoseYazisi;
 
 
     void Start()
@@ -36,9 +38,19 @@ public class BallTouch : MonoBehaviour
             rb.velocity = new Vector2(-yatayKuvvet, rb.velocity.y);
         }
 
+        if (other.gameObject.tag == "UpWall")
+        {
+            rb.velocity = new Vector2(rb.velocity.x, -dikeyKuvvet);
+        }
+
+
+
         if (other.gameObject.tag == "RestartLine")
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            LoseYazisi.text = "Oyunu Kaybettiniz\n Skor:" + Win.score + "\nKırılan Blok:" + Win.brokeBrick + "\n\n Tekrar Oynamak için Bir Tusa Basiniz";
+            Time.timeScale = 0;
+
+
         }
 
     }
